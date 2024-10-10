@@ -21,4 +21,4 @@ Siga as instruções abaixo para rodar o projeto localmente:
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/agr3w/detector-de-voz.git
