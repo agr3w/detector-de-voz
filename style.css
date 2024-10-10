@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #282c34; /* Fundo escuro */
+    color: #ffffff; /* Texto claro */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #3a3f47; /* Fundo do container */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #61dafb; /* Cor do botão */
+    color: #282c34; /* Texto do botão */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #21a1f1; /* Cor do botão ao passar o mouse */
+}
+
+.output {
+    background-color: #ffffff; /* Fundo da área de saída */
+    color: #282c34; /* Texto da saída */
+    padding: 15px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto; /* Permitir rolagem quando o texto excede o tamanho */
+    text-align: left; /* Alinhamento do texto à esquerda */
+}
