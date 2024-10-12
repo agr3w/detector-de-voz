@@ -13,6 +13,11 @@ body {
 }
 
 /* Controles (campo de texto e botões) */
+
+#text-input {
+    padding-bottom: 20px;
+}
+
 #controls {
     margin-bottom: 20px;
 }
@@ -45,6 +50,12 @@ button {
     background-color: #dc3545;
     color: white;
 }
+
+#clear-button {
+    background-color: #c4c124;
+    color: white;
+}
+
 
 button:hover {
     opacity: 0.9;

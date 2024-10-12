@@ -4,6 +4,8 @@ const outputDiv = document.getElementById('output');
 const wordInput = document.getElementById('word-input');
 const trackedWordDisplay = document.getElementById('tracked-word');
 const wordCountDisplay = document.getElementById('word-count');
+const clearButton = document.getElementById('clear-button');
+
 
 let isRecognizing = false;
 let wordCount = 0;
@@ -54,6 +56,8 @@ function stopRecognition() {
     }
 }
 
+stopButton.addEventListener('click', stopRecognition);
+
 // Manipuladores dos botões de iniciar e parar
 startButton.addEventListener('click', () => {
     trackedWord = wordInput.value.trim(); // Palavra a ser monitorada
@@ -68,4 +72,15 @@ startButton.addEventListener('click', () => {
     }
 });
 
-stopButton.addEventListener('click', stopRecognition);
+
+// Função para limpar o conteúdo da página
+function clearContent() {
+    outputDiv.innerHTML = ''; // Limpa todo o texto exibido
+    wordCount = 0; // Reinicia a contagem de palavras
+    wordCountDisplay.textContent = wordCount; // Atualiza a exibição da contagem
+    trackedWordDisplay.textContent = ''; // Limpa a exibição da palavra monitorada
+    wordInput.value = ''; // Limpa o campo de input de palavra monitorada
+}
+
+// Adiciona o evento de clique no botão de limpar
+clearButton.addEventListener('click', clearContent);
