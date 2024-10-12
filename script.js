@@ -10,6 +10,12 @@ let wordCount = 0;
 let trackedWord = '';
 let recognition; // Variável para o reconhecimento contínuo
 
+// Função para destacar a palavra monitorada
+function highlightTrackedWord(sentence, word) {
+    const regex = new RegExp(`(${word})`, 'gi'); // Cria um regex para a palavra monitorada
+    return sentence.replace(regex, '<span class="highlight">$1</span>'); // Envolve a palavra monitorada em uma span
+}
+
 // Função para iniciar o reconhecimento contínuo
 function startRecognition() {
     recognition = new webkitSpeechRecognition(); // Instância de reconhecimento de voz
@@ -21,12 +27,18 @@ function startRecognition() {
     recognition.onresult = (event) => {
         const transcript = event.results[event.results.length - 1][0].transcript.trim();
         console.log("Texto reconhecido: ", transcript);
-        outputDiv.innerHTML += `<p>${transcript}</p>`; // Exibir o texto reconhecido no output
 
         // Verifica se o texto reconhecido contém a palavra monitorada
         if (transcript.toLowerCase().includes(trackedWord.toLowerCase())) {
             wordCount++;
             wordCountDisplay.textContent = wordCount;
+
+            // Destaca a palavra monitorada em vermelho
+            const highlightedText = highlightTrackedWord(transcript, trackedWord);
+            outputDiv.innerHTML += `<p>${highlightedText}</p>`;
+        } else {
+            // Caso não contenha, apenas adiciona a frase ao output
+            outputDiv.innerHTML += `<p>${transcript}</p>`;
         }
     };
 
@@ -49,6 +61,7 @@ startButton.addEventListener('click', () => {
         trackedWordDisplay.textContent = trackedWord; // Exibir a palavra monitorada
         wordCount = 0; // Reinicia a contagem de palavras
         wordCountDisplay.textContent = wordCount; // Reinicia a exibição da contagem
+        outputDiv.innerHTML = ''; // Limpar o texto anterior
         startRecognition();
     } else {
         alert('Por favor, insira uma palavra para monitorar.');

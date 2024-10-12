@@ -79,3 +79,8 @@ button:hover {
 p {
     margin: 5px 0;
 }
+
+.highlight {
+    color: red;
+    font-weight: bold;
+}
