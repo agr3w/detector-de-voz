@@ -1,8 +1,14 @@
 const startButton = document.getElementById('start-button');
 const stopButton = document.getElementById('stop-button');
 const output = document.getElementById('output');
+const wordInput = document.getElementById('word-input');
+const trackedWordDisplay = document.getElementById('tracked-word');
+const wordCountDisplay = document.getElementById('word-count');
 
 let recognition;
+let wordToTrack = '';
+let wordCount = 0;
+let recognizing = false; // Variável para verificar se está reconhecendo
 const previousResults = new Set(); // Usado para armazenar resultados já exibidos
 
 if (!('webkitSpeechRecognition' in window)) {
@@ -13,33 +19,50 @@ if (!('webkitSpeechRecognition' in window)) {
     recognition.interimResults = false; // Resultados intermediários desativados
 
     recognition.onresult = (event) => {
-        const transcript = event.results[event.resultIndex][0].transcript; // Obtém o texto reconhecido
-
-        // Verifica se a frase já foi exibida
+        const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase(); // Texto reconhecido, convertendo para minúsculas
         if (!previousResults.has(transcript)) {
-            previousResults.add(transcript); // Adiciona a nova frase ao conjunto
-            const paragraph = document.createElement('p'); // Cria um novo parágrafo
-            paragraph.textContent = transcript; // Define o texto do parágrafo
-            output.appendChild(paragraph); // Adiciona o novo parágrafo ao output
-            output.scrollTop = output.scrollHeight; // Rolagem automática para o final
+            previousResults.add(transcript);
+            const paragraph = document.createElement('p');
+            paragraph.textContent = transcript;
+            output.appendChild(paragraph);
+            output.scrollTop = output.scrollHeight;
+
+            // Verifica se a palavra monitorada está no texto reconhecido
+            if (wordToTrack && transcript.includes(wordToTrack.toLowerCase())) {
+                wordCount++;
+                wordCountDisplay.textContent = wordCount;
+            }
         }
     };
 
     recognition.onerror = (event) => {
-        alert.error('Erro de reconhecimento:', event.error); // Log de erros de reconhecimento
+        console.error('Erro de reconhecimento:', event.error);
     };
 
     recognition.onend = () => {
-        alert('Reconhecimento de voz encerrado.'); // Mensagem de encerramento
+        recognizing = false;
+        console.log('Reconhecimento de voz encerrado.');
     };
 
     startButton.onclick = () => {
-        output.innerHTML = ''; // Limpa a saída ao iniciar
+        wordToTrack = wordInput.value.trim();
+        if (wordToTrack === '') {
+            alert('Por favor, insira uma palavra para monitorar.');
+            return;
+        }
+        trackedWordDisplay.textContent = wordToTrack;
+        wordCount = 0;
+        wordCountDisplay.textContent = wordCount;
+        output.innerHTML = ''; // Limpa o texto anterior
         previousResults.clear(); // Limpa os resultados anteriores
         recognition.start(); // Inicia o reconhecimento
+        recognizing = true;
     };
 
     stopButton.onclick = () => {
-        recognition.stop(); // Para o reconhecimento
+        if (recognizing) {
+            recognition.stop(); // Para o reconhecimento
+            recognizing = false;
+        }
     };
 }

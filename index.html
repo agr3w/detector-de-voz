@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Reconhecimento de Voz</h1>
-        <div class="button-container">
-            <button id="start-button">Iniciar Reconhecimento</button>
-            <button id="stop-button">Parar Reconhecimento</button>
-        </div>
-        <div id="output" class="output"></div>
+    <h1>Reconhecimento de Voz com Monitoramento de Palavra</h1>
+
+    <div id="controls">
+        <input type="text" id="word-input" placeholder="Digite uma palavra para monitorar" />
+        <button id="start-button">Iniciar Reconhecimento</button>
+        <button id="stop-button">Parar Reconhecimento</button>
     </div>
+
+    <div id="output"></div>
+    <p>Palavra monitorada: <span id="tracked-word"></span></p>
+    <p>Repetições: <span id="word-count">0</span></p>
+
     <script src="script.js"></script>
 </body>
 </html>

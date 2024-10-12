@@ -1,51 +1,81 @@
+/* Estilo global */
 body {
     font-family: Arial, sans-serif;
-    background-color: #282c34; /* Fundo escuro */
-    color: #ffffff; /* Texto claro */
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #3a3f47; /* Fundo do container */
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-h1 {
-    font-size: 24px;
+/* Controles (campo de texto e botões) */
+#controls {
     margin-bottom: 20px;
 }
 
-.button-container {
-    margin-bottom: 20px;
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    margin-right: 10px;
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    border-radius: 5px;
-    background-color: #61dafb; /* Cor do botão */
-    color: #282c34; /* Texto do botão */
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#start-button {
+    background-color: #28a745;
+    color: white;
+}
+
+#stop-button {
+    background-color: #dc3545;
+    color: white;
 }
 
 button:hover {
-    background-color: #21a1f1; /* Cor do botão ao passar o mouse */
+    opacity: 0.9;
 }
 
-.output {
-    background-color: #ffffff; /* Fundo da área de saída */
-    color: #282c34; /* Texto da saída */
-    padding: 15px;
-    border-radius: 5px;
-    max-height: 300px;
-    overflow-y: auto; /* Permitir rolagem quando o texto excede o tamanho */
-    text-align: left; /* Alinhamento do texto à esquerda */
+/* Área de saída de texto reconhecido */
+#output {
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+/* Texto em destaque */
+.highlight {
+    font-weight: bold;
+    color: red;
+}
+
+/* Estilo para exibir a palavra monitorada e contagem de repetições */
+#tracked-word, #word-count {
+    font-weight: bold;
+    color: #007bff;
+}
+
+p {
+    margin: 5px 0;
 }
